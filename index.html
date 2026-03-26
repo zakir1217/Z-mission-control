@@ -26,26 +26,23 @@
             --accent-green: #10b981;
             --accent-yellow: #f59e0b;
             --accent-red: #ef4444;
-            --sidebar-width: 240px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Starfield Background */
-        .starfield {
+        /* Stars */
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            overflow: hidden;
             z-index: 0;
         }
 
@@ -56,16 +53,10 @@
             background: white;
             border-radius: 50%;
             opacity: 0.3;
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
         }
 
         /* Layout */
-        .app-container {
+        .container {
             display: flex;
             min-height: 100vh;
             position: relative;
@@ -74,46 +65,42 @@
 
         /* Sidebar */
         .sidebar {
-            width: var(--sidebar-width);
+            width: 240px;
             background: var(--bg-secondary);
             border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
             position: fixed;
             height: 100vh;
             overflow-y: auto;
-            transition: transform 0.3s ease;
         }
 
         .sidebar-header {
-            padding: 24px;
+            padding: 20px;
             border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
         }
 
         .logo-text {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
         }
 
-        .logo-subtext {
-            font-size: 12px;
+        .logo-sub {
+            font-size: 11px;
             color: var(--text-muted);
         }
 
@@ -121,8 +108,8 @@
             padding: 16px 12px;
         }
 
-        .nav-section-title {
-            font-size: 11px;
+        .nav-title {
+            font-size: 10px;
             text-transform: uppercase;
             color: var(--text-muted);
             padding: 0 12px;
@@ -133,29 +120,19 @@
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             padding: 10px 12px;
             margin: 2px 0;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s;
             color: var(--text-secondary);
             text-decoration: none;
+            transition: all 0.2s;
         }
 
-        .nav-item:hover {
+        .nav-item:hover, .nav-item.active {
             background: var(--bg-tertiary);
             color: var(--text-primary);
-        }
-
-        .nav-item.active {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-        }
-
-        .nav-item i {
-            width: 20px;
-            text-align: center;
         }
 
         .nav-badge {
@@ -168,14 +145,14 @@
         }
 
         /* Main Content */
-        .main-content {
+        .main {
             flex: 1;
-            margin-left: var(--sidebar-width);
+            margin-left: 240px;
             display: flex;
             flex-direction: column;
         }
 
-        /* Header */
+        /* Header - FIXED TO ALWAYS SHOW BUTTONS */
         .header {
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
@@ -183,117 +160,97 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
             gap: 16px;
         }
 
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .page-title {
+        .header-title {
             font-size: 20px;
             font-weight: 600;
         }
 
-        .header-stats {
+        .header-center {
             display: flex;
-            gap: 24px;
+            gap: 20px;
         }
 
-        .stat-item {
+        .stat {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
+            gap: 6px;
+            font-size: 13px;
             color: var(--text-secondary);
         }
 
-        .stat-value {
+        .stat strong {
             color: var(--text-primary);
-            font-weight: 600;
         }
 
-        .header-actions {
+        /* BUTTONS - ALWAYS VISIBLE */
+        .header-buttons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .btn {
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
+            gap: 6px;
+            white-space: nowrap;
         }
 
-        .btn-primary {
+        .btn-purple {
             background: var(--accent-purple);
             color: white;
         }
 
-        .btn-primary:hover {
+        .btn-purple:hover {
             background: #7c3aed;
         }
 
-        .btn-secondary {
+        .btn-gray {
             background: var(--bg-tertiary);
             color: var(--text-primary);
             border: 1px solid var(--border-color);
         }
 
-        .btn-secondary:hover {
+        .btn-gray:hover {
             background: var(--bg-card);
         }
 
-        /* Content Area */
-        .content-area {
+        /* Content */
+        .content {
             flex: 1;
-            display: flex;
-            overflow: hidden;
+            padding: 20px;
+            overflow: auto;
         }
 
         /* Board */
-        .board-container {
-            flex: 1;
-            padding: 24px;
-            overflow-x: auto;
-        }
-
         .board {
             display: flex;
             gap: 16px;
-            min-width: max-content;
+            overflow-x: auto;
+            padding-bottom: 10px;
         }
 
         .column {
-            width: 280px;
+            min-width: 260px;
+            width: 260px;
             background: var(--bg-secondary);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
-            max-height: calc(100vh - 200px);
+            max-height: calc(100vh - 140px);
         }
 
         .column-header {
-            padding: 16px;
+            padding: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -305,82 +262,67 @@
             align-items: center;
             gap: 8px;
             font-weight: 600;
+            font-size: 14px;
         }
 
-        .column-dot {
+        .dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
         }
 
-        .column-dot.recurring { background: var(--accent-blue); }
-        .column-dot.backlog { background: var(--text-muted); }
-        .column-dot.inprogress { background: var(--accent-yellow); }
-        .column-dot.review { background: var(--accent-green); }
+        .dot-blue { background: var(--accent-blue); }
+        .dot-gray { background: var(--text-muted); }
+        .dot-yellow { background: var(--accent-yellow); }
+        .dot-green { background: var(--accent-green); }
 
-        .column-count {
+        .count {
             background: var(--bg-tertiary);
             padding: 2px 8px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 12px;
             color: var(--text-secondary);
         }
 
-        .column-content {
+        .column-body {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
         }
 
         /* Task Card */
-        .task-card {
+        .task {
             background: var(--bg-card);
             border-radius: 8px;
-            padding: 14px;
+            padding: 12px;
+            margin-bottom: 8px;
             cursor: grab;
-            transition: all 0.2s;
             border: 1px solid transparent;
         }
 
-        .task-card:hover {
+        .task:hover {
             border-color: var(--border-color);
-            transform: translateY(-2px);
-        }
-
-        .task-card.dragging {
-            opacity: 0.5;
         }
 
         .task-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
             margin-bottom: 8px;
         }
 
-        .task-priority {
+        .priority {
             width: 8px;
             height: 8px;
             border-radius: 50%;
         }
 
-        .priority-high { background: var(--accent-red); }
-        .priority-medium { background: var(--accent-yellow); }
-        .priority-low { background: var(--accent-green); }
-
-        .task-menu {
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 2px;
-        }
+        .p-high { background: var(--accent-red); }
+        .p-med { background: var(--accent-yellow); }
+        .p-low { background: var(--accent-green); }
 
         .task-title {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 12px;
+            font-size: 13px;
+            margin-bottom: 10px;
             line-height: 1.4;
         }
 
@@ -390,34 +332,28 @@
             justify-content: space-between;
         }
 
-        .task-assignee {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .assignee-avatar {
-            width: 24px;
-            height: 24px;
+        .assignee {
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
         }
 
-        .assignee-me { background: var(--accent-blue); }
-        .assignee-taobe { background: var(--accent-purple); }
+        .a-me { background: var(--accent-blue); }
+        .a-taobe { background: var(--accent-purple); }
 
-        .task-time {
-            font-size: 12px;
+        .time {
+            font-size: 11px;
             color: var(--text-muted);
         }
 
         /* Activity Panel */
-        .activity-panel {
-            width: 320px;
+        .activity {
+            width: 300px;
             background: var(--bg-secondary);
             border-left: 1px solid var(--border-color);
             display: flex;
@@ -425,110 +361,103 @@
         }
 
         .activity-header {
-            padding: 20px;
+            padding: 16px;
             border-bottom: 1px solid var(--border-color);
         }
 
         .activity-title {
-            font-size: 16px;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .activity-title::after {
-            content: '';
+        .live-dot {
             width: 8px;
             height: 8px;
             background: var(--accent-green);
             border-radius: 50%;
-            animation: pulse 2s infinite;
+            animation: blink 1.5s infinite;
         }
 
-        @keyframes pulse {
+        @keyframes blink {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.3; }
         }
 
-        .activity-content {
+        .activity-body {
             flex: 1;
             overflow-y: auto;
-            padding: 16px;
+            padding: 12px;
         }
 
         .activity-item {
             display: flex;
-            gap: 12px;
-            padding: 12px 0;
+            gap: 10px;
+            padding: 10px 0;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-
-        .activity-avatar {
-            width: 32px;
-            height: 32px;
+        .act-avatar {
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
             flex-shrink: 0;
         }
 
-        .activity-text {
+        .act-text {
             flex: 1;
         }
 
-        .activity-agent {
+        .act-agent {
             font-weight: 600;
             color: var(--accent-purple);
+            font-size: 13px;
         }
 
-        .activity-action {
+        .act-desc {
+            font-size: 12px;
             color: var(--text-secondary);
-            font-size: 13px;
             margin-top: 2px;
         }
 
-        .activity-time {
-            font-size: 11px;
+        .act-time {
+            font-size: 10px;
             color: var(--text-muted);
             margin-top: 4px;
         }
 
         /* Modal */
-        .modal-overlay {
+        .modal-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.8);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 100;
         }
 
-        .modal-overlay.active {
+        .modal-bg.show {
             display: flex;
         }
 
-        .modal {
+        .modal-box {
             background: var(--bg-secondary);
-            border-radius: 12px;
+            border-radius: 10px;
             width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow: hidden;
+            max-width: 450px;
         }
 
         .modal-header {
-            padding: 20px;
+            padding: 16px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
@@ -536,7 +465,7 @@
         }
 
         .modal-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
         }
 
@@ -549,241 +478,199 @@
         }
 
         .modal-body {
-            padding: 20px;
+            padding: 16px;
         }
 
-        .form-group {
-            margin-bottom: 16px;
+        .form-row {
+            margin-bottom: 14px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
+            margin-bottom: 5px;
+            font-size: 12px;
             color: var(--text-secondary);
         }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
+        .form-input, .form-select {
             width: 100%;
-            padding: 10px 14px;
+            padding: 10px 12px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--text-primary);
-            font-size: 14px;
-            font-family: inherit;
+            font-size: 13px;
         }
 
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
+        .form-input:focus, .form-select:focus {
             outline: none;
             border-color: var(--accent-purple);
         }
 
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
         .modal-footer {
-            padding: 20px;
+            padding: 16px;
             border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: flex-end;
-            gap: 12px;
+            gap: 10px;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .activity-panel {
-                display: none;
-            }
+        /* Responsive - FIXED */
+        @media (max-width: 1200px) {
+            .activity { display: none; }
         }
 
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .header-stats {
-                display: none;
+            .sidebar { display: none; }
+            .main { margin-left: 0; }
+            .header { flex-wrap: wrap; }
+            .header-center { display: none; }
+            /* Buttons stay visible! */
+            .header-buttons {
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 10px;
             }
         }
 
         /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
-        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-tertiary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
     </style>
 </head>
 <body>
-    <!-- Starfield Background -->
-    <div class="starfield" id="starfield"></div>
+    <div class="stars" id="stars"></div>
 
-    <div class="app-container">
+    <div class="container">
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
+        <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
                     <div class="logo-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-robot" style="color: white; font-size: 16px;"></i>
                     </div>
                     <div>
                         <div class="logo-text">Mission Control</div>
-                        <div class="logo-subtext">Zakir's Dashboard</div>
+                        <div class="logo-sub">Zakir's Dashboard</div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-section">
-                <div class="nav-section-title">Overview</div>
-                <a href="#" class="nav-item active" data-page="tasks">
+                <div class="nav-title">Overview</div>
+                <div class="nav-item active" onclick="showPage('tasks')">
                     <i class="fas fa-columns"></i>
                     <span>Task Board</span>
-                </a>
-                <a href="#" class="nav-item" data-page="calendar">
+                </div>
+                <div class="nav-item" onclick="showPage('calendar')">
                     <i class="fas fa-calendar"></i>
                     <span>Calendar</span>
-                </a>
-                <a href="#" class="nav-item" data-page="projects">
+                </div>
+                <div class="nav-item" onclick="showPage('projects')">
                     <i class="fas fa-folder"></i>
                     <span>Projects</span>
-                </a>
+                </div>
             </div>
 
             <div class="nav-section">
-                <div class="nav-section-title">Knowledge</div>
-                <a href="#" class="nav-item" data-page="memory">
+                <div class="nav-title">Knowledge</div>
+                <div class="nav-item" onclick="showPage('memory')">
                     <i class="fas fa-brain"></i>
                     <span>Memories</span>
-                </a>
-                <a href="#" class="nav-item" data-page="docs">
+                </div>
+                <div class="nav-item" onclick="showPage('docs')">
                     <i class="fas fa-file-alt"></i>
                     <span>Documents</span>
-                </a>
+                </div>
             </div>
 
             <div class="nav-section">
-                <div class="nav-section-title">Team</div>
-                <a href="#" class="nav-item" data-page="agents">
+                <div class="nav-title">Team</div>
+                <div class="nav-item" onclick="showPage('agents')">
                     <i class="fas fa-users"></i>
                     <span>Agents</span>
                     <span class="nav-badge">2</span>
-                </a>
-                <a href="#" class="nav-item" data-page="approvals">
+                </div>
+                <div class="nav-item" onclick="showPage('approvals')">
                     <i class="fas fa-check-circle"></i>
                     <span>Approvals</span>
-                </a>
+                </div>
             </div>
         </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
+        <!-- Main -->
+        <main class="main">
             <header class="header">
-                <div class="header-left">
-                    <button class="menu-toggle" id="menuToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <h1 class="page-title">Task Board</h1>
-                </div>
-                <div class="header-stats">
-                    <div class="stat-item">
-                        <i class="fas fa-clock"></i>
-                        <span>This week: <span class="stat-value" id="statWeek">0</span></span>
+                <h1 class="header-title">Task Board</h1>
+
+                <div class="header-center">
+                    <div class="stat">
+                        <i class="fas fa-clock" style="color: var(--accent-blue);"></i>
+                        <span>This week: <strong id="statWeek">5</strong></span>
                     </div>
-                    <div class="stat-item">
-                        <i class="fas fa-spinner"></i>
-                        <span>In progress: <span class="stat-value" id="statProgress">0</span></span>
+                    <div class="stat">
+                        <i class="fas fa-spinner" style="color: var(--accent-yellow);"></i>
+                        <span>In progress: <strong id="statProgress">2</strong></span>
                     </div>
-                    <div class="stat-item">
-                        <i class="fas fa-check"></i>
-                        <span>Completion: <span class="stat-value" id="statCompletion">0%</span></span>
+                    <div class="stat">
+                        <i class="fas fa-check" style="color: var(--accent-green);"></i>
+                        <span>Completion: <strong id="statComplete">40%</strong></span>
                     </div>
                 </div>
-                <div class="header-actions">
-                    <button class="btn btn-secondary" id="pingTaobe">
+
+                <div class="header-buttons">
+                    <button class="btn btn-gray" onclick="pingTaobe()">
                         <i class="fas fa-bell"></i>
                         Ping Taobe
                     </button>
-                    <button class="btn btn-primary" id="addTask">
+                    <button class="btn btn-purple" onclick="openModal()">
                         <i class="fas fa-plus"></i>
                         New Task
                     </button>
                 </div>
             </header>
 
-            <div class="content-area">
-                <div class="board-container">
-                    <div class="board" id="board">
-                        <!-- Columns will be generated by JS -->
-                    </div>
+            <div class="content" style="display: flex; gap: 20px;">
+                <div class="board" id="board">
+                    <!-- Columns generated by JS -->
                 </div>
 
-                <aside class="activity-panel">
+                <aside class="activity">
                     <div class="activity-header">
-                        <div class="activity-title">Live Activity</div>
+                        <div class="activity-title">
+                            <span class="live-dot"></span>
+                            Live Activity
+                        </div>
                     </div>
-                    <div class="activity-content" id="activityContent">
-                        <!-- Activity items will be generated by JS -->
+                    <div class="activity-body" id="activityBody">
+                        <!-- Activity items -->
                     </div>
                 </aside>
             </div>
         </main>
     </div>
 
-    <!-- Add Task Modal -->
-    <div class="modal-overlay" id="taskModal">
-        <div class="modal">
+    <!-- Modal -->
+    <div class="modal-bg" id="modal">
+        <div class="modal-box">
             <div class="modal-header">
-                <h2 class="modal-title">Create New Task</h2>
-                <button class="modal-close" id="closeModal">&times;</button>
+                <h3 class="modal-title">Create New Task</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                <div class="form-row">
                     <label class="form-label">Task Title</label>
                     <input type="text" class="form-input" id="taskTitle" placeholder="What needs to be done?">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-textarea" id="taskDesc" placeholder="Add details..."></textarea>
-                </div>
-                <div class="form-group">
+                <div class="form-row">
                     <label class="form-label">Assign To</label>
                     <select class="form-select" id="taskAssignee">
                         <option value="me">Me (Z)</option>
                         <option value="taobe">Taobe (AI)</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-row">
                     <label class="form-label">Priority</label>
                     <select class="form-select" id="taskPriority">
                         <option value="high">High</option>
@@ -791,293 +678,202 @@
                         <option value="low">Low</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-row">
                     <label class="form-label">Status</label>
                     <select class="form-select" id="taskStatus">
-                        <option value="backlog" selected>Backlog</option>
                         <option value="recurring">Recurring</option>
+                        <option value="backlog" selected>Backlog</option>
                         <option value="inprogress">In Progress</option>
                         <option value="review">Review</option>
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelTask">Cancel</button>
-                <button class="btn btn-primary" id="saveTask">Create Task</button>
+                <button class="btn btn-gray" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-purple" onclick="createTask()">Create Task</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Starfield generation
-        function createStarfield() {
-            const starfield = document.getElementById('starfield');
-            for (let i = 0; i < 100; i++) {
+        // Create stars
+        function createStars() {
+            const stars = document.getElementById('stars');
+            for (let i = 0; i < 80; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                starfield.appendChild(star);
+                star.style.opacity = Math.random() * 0.5 + 0.1;
+                stars.appendChild(star);
             }
         }
 
-        // Sample initial data
-        const sampleTasks = [
-            { id: 1, title: "Review quarterly reports", desc: "Analyze Q4 financial data", assignee: "me", priority: "high", status: "inprogress", time: "2h ago" },
-            { id: 2, title: "Schedule team meeting", desc: "Set up monthly review", assignee: "taobe", priority: "medium", status: "backlog", time: "1d ago" },
-            { id: 3, title: "Update documentation", desc: "Mission Control user guide", assignee: "taobe", priority: "low", status: "review", time: "3h ago" },
-            { id: 4, title: "Daily standup notes", desc: "Recurring task", assignee: "me", priority: "medium", status: "recurring", time: "Daily" },
-            { id: 5, title: "Research AI trends", desc: "Latest developments in AI", assignee: "taobe", priority: "high", status: "backlog", time: "2d ago" },
+        // Sample tasks
+        let tasks = [
+            { id: 1, title: "Review quarterly reports", priority: "high", status: "inprogress", assignee: "me", time: "2h ago" },
+            { id: 2, title: "Schedule team meeting", priority: "medium", status: "backlog", assignee: "taobe", time: "1d ago" },
+            { id: 3, title: "Update documentation", priority: "low", status: "review", assignee: "taobe", time: "3h ago" },
+            { id: 4, title: "Daily standup notes", priority: "medium", status: "recurring", assignee: "me", time: "Daily" },
+            { id: 5, title: "Research AI trends", priority: "high", status: "backlog", assignee: "taobe", time: "2d ago" },
         ];
 
-        const sampleActivity = [
-            { agent: "Taobe", action: "Moved 'Update documentation' to Review", time: "3m ago", avatar: "🤖" },
-            { agent: "Taobe", action: "Completed research on AI trends", time: "15m ago", avatar: "🤖" },
-            { agent: "You", action: "Created task 'Review quarterly reports'", time: "2h ago", avatar: "Z" },
-            { agent: "Taobe", action: "Analyzed yesterday's tasks", time: "4h ago", avatar: "🤖" },
-            { agent: "System", action: "Daily backup completed", time: "6h ago", avatar: "⚙️" },
+        // Sample activity
+        let activities = [
+            { agent: "Taobe", desc: "Moved task to Review", time: "3m ago", icon: "🤖", color: "var(--accent-purple)" },
+            { agent: "Taobe", desc: "Completed research task", time: "15m ago", icon: "🤖", color: "var(--accent-purple)" },
+            { agent: "You", desc: "Created new task", time: "2h ago", icon: "Z", color: "var(--accent-blue)" },
+            { agent: "System", desc: "Daily backup completed", time: "6h ago", icon: "⚙️", color: "var(--text-muted)" },
         ];
-
-        // State management
-        let tasks = JSON.parse(localStorage.getItem('missionTasks')) || sampleTasks;
-        let activity = JSON.parse(localStorage.getItem('missionActivity')) || sampleActivity;
-
-        const columns = {
-            recurring: { title: 'Recurring', dot: 'recurring' },
-            backlog: { title: 'Backlog', dot: 'backlog' },
-            inprogress: { title: 'In Progress', dot: 'inprogress' },
-            review: { title: 'Review', dot: 'review' }
-        };
-
-        // DOM Elements
-        const board = document.getElementById('board');
-        const activityContent = document.getElementById('activityContent');
-        const taskModal = document.getElementById('taskModal');
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-
-        // Initialize
-        function init() {
-            createStarfield();
-            renderBoard();
-            renderActivity();
-            updateStats();
-            setupEventListeners();
-        }
 
         // Render board
         function renderBoard() {
+            const columns = {
+                recurring: { title: 'Recurring', dot: 'dot-blue' },
+                backlog: { title: 'Backlog', dot: 'dot-gray' },
+                inprogress: { title: 'In Progress', dot: 'dot-yellow' },
+                review: { title: 'Review', dot: 'dot-green' }
+            };
+
+            const board = document.getElementById('board');
             board.innerHTML = '';
-            
-            Object.entries(columns).forEach(([key, col]) => {
-                const columnEl = document.createElement('div');
-                columnEl.className = 'column';
-                columnEl.dataset.status = key;
-                
+
+            for (const [key, col] of Object.entries(columns)) {
                 const colTasks = tasks.filter(t => t.status === key);
+                const colEl = document.createElement('div');
+                colEl.className = 'column';
                 
-                columnEl.innerHTML = `
+                colEl.innerHTML = `
                     <div class="column-header">
                         <div class="column-title">
-                            <span class="column-dot ${col.dot}"></span>
+                            <span class="dot ${col.dot}"></span>
                             ${col.title}
                         </div>
-                        <span class="column-count">${colTasks.length}</span>
+                        <span class="count">${colTasks.length}</span>
                     </div>
-                    <div class="column-content" data-status="${key}">
-                        ${colTasks.map(task => createTaskCard(task)).join('')}
+                    <div class="column-body">
+                        ${colTasks.map(t => createTaskHTML(t)).join('')}
                     </div>
                 `;
                 
-                board.appendChild(columnEl);
-            });
+                board.appendChild(colEl);
+            }
 
-            setupDragAndDrop();
+            updateStats();
         }
 
-        // Create task card HTML
-        function createTaskCard(task) {
-            const assigneeClass = task.assignee === 'me' ? 'assignee-me' : 'assignee-taobe';
-            const assigneeLabel = task.assignee === 'me' ? 'Z' : 'T';
-            const assigneeName = task.assignee === 'me' ? 'You' : 'Taobe';
+        function createTaskHTML(task) {
+            const pClass = task.priority === 'high' ? 'p-high' : task.priority === 'medium' ? 'p-med' : 'p-low';
+            const aClass = task.assignee === 'me' ? 'a-me' : 'a-taobe';
+            const aLabel = task.assignee === 'me' ? 'Z' : 'T';
             
             return `
-                <div class="task-card" draggable="true" data-id="${task.id}">
+                <div class="task">
                     <div class="task-header">
-                        <span class="task-priority priority-${task.priority}"></span>
-                        <span class="task-menu"><i class="fas fa-ellipsis-h"></i></span>
+                        <span class="priority ${pClass}"></span>
+                        <i class="fas fa-ellipsis-h" style="color: var(--text-muted); cursor: pointer;"></i>
                     </div>
                     <div class="task-title">${task.title}</div>
                     <div class="task-footer">
-                        <div class="task-assignee">
-                            <div class="assignee-avatar ${assigneeClass}">${assigneeLabel}</div>
-                            <span class="task-time">${task.time}</span>
-                        </div>
+                        <div class="assignee ${aClass}">${aLabel}</div>
+                        <span class="time">${task.time}</span>
                     </div>
                 </div>
             `;
         }
 
-        // Render activity
         function renderActivity() {
-            activityContent.innerHTML = activity.map(item => `
+            const body = document.getElementById('activityBody');
+            body.innerHTML = activities.map(a => `
                 <div class="activity-item">
-                    <div class="activity-avatar" style="background: ${item.agent === 'Taobe' ? 'var(--accent-purple)' : item.agent === 'You' ? 'var(--accent-blue)' : 'var(--text-muted)'}; color: white;">
-                        ${item.avatar}
-                    </div>
-                    <div class="activity-text">
-                        <span class="activity-agent">${item.agent}</span>
-                        <div class="activity-action">${item.action}</div>
-                        <div class="activity-time">${item.time}</div>
+                    <div class="act-avatar" style="background: ${a.color}; color: white;">${a.icon}</div>
+                    <div class="act-text">
+                        <div class="act-agent">${a.agent}</div>
+                        <div class="act-desc">${a.desc}</div>
+                        <div class="act-time">${a.time}</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Update stats
         function updateStats() {
-            const weekTasks = tasks.length;
-            const inProgress = tasks.filter(t => t.status === 'inprogress').length;
-            const completed = tasks.filter(t => t.status === 'review').length;
-            const completionRate = weekTasks > 0 ? Math.round((completed / weekTasks) * 100) : 0;
-            
-            document.getElementById('statWeek').textContent = weekTasks;
-            document.getElementById('statProgress').textContent = inProgress;
-            document.getElementById('statCompletion').textContent = completionRate + '%';
+            document.getElementById('statWeek').textContent = tasks.length;
+            document.getElementById('statProgress').textContent = tasks.filter(t => t.status === 'inprogress').length;
+            const complete = tasks.filter(t => t.status === 'review').length;
+            const pct = tasks.length > 0 ? Math.round((complete / tasks.length) * 100) : 0;
+            document.getElementById('statComplete').textContent = pct + '%';
         }
 
-        // Drag and drop
-        function setupDragAndDrop() {
-            const cards = document.querySelectorAll('.task-card');
-            const columns = document.querySelectorAll('.column-content');
-            
-            cards.forEach(card => {
-                card.addEventListener('dragstart', () => {
-                    card.classList.add('dragging');
-                });
-                
-                card.addEventListener('dragend', () => {
-                    card.classList.remove('dragging');
-                    saveTasks();
-                    addActivity('You', `Moved task to new column`, 'Z');
-                });
-            });
-            
-            columns.forEach(col => {
-                col.addEventListener('dragover', e => {
-                    e.preventDefault();
-                    const dragging = document.querySelector('.dragging');
-                    if (dragging) {
-                        col.appendChild(dragging);
-                        const taskId = parseInt(dragging.dataset.id);
-                        const task = tasks.find(t => t.id === taskId);
-                        if (task) {
-                            task.status = col.dataset.status;
-                        }
-                    }
-                });
-            });
-        }
-
-        // Add new task
-        function addTask() {
-            const title = document.getElementById('taskTitle').value;
-            const desc = document.getElementById('taskDesc').value;
-            const assignee = document.getElementById('taskAssignee').value;
-            const priority = document.getElementById('taskPriority').value;
-            const status = document.getElementById('taskStatus').value;
-            
-            if (!title) return;
-            
-            const newTask = {
-                id: Date.now(),
-                title,
-                desc,
-                assignee,
-                priority,
-                status,
-                time: 'Just now'
-            };
-            
-            tasks.push(newTask);
-            saveTasks();
-            renderBoard();
-            updateStats();
-            closeModal();
-            
-            const assigneeName = assignee === 'me' ? 'You' : 'Taobe';
-            addActivity('You', `Created task "${title}" assigned to ${assigneeName}`, 'Z');
-            
-            // Reset form
-            document.getElementById('taskTitle').value = '';
-            document.getElementById('taskDesc').value = '';
-        }
-
-        // Add activity
-        function addActivity(agent, action, avatar) {
-            activity.unshift({
-                agent,
-                action,
-                time: 'Just now',
-                avatar
-            });
-            
-            if (activity.length > 20) activity.pop();
-            
-            localStorage.setItem('missionActivity', JSON.stringify(activity));
-            renderActivity();
-        }
-
-        // Save tasks
-        function saveTasks() {
-            localStorage.setItem('missionTasks', JSON.stringify(tasks));
-        }
-
-        // Modal handlers
+        // Modal
         function openModal() {
-            taskModal.classList.add('active');
+            document.getElementById('modal').classList.add('show');
         }
 
         function closeModal() {
-            taskModal.classList.remove('active');
+            document.getElementById('modal').classList.remove('show');
+            document.getElementById('taskTitle').value = '';
         }
 
-        // Event listeners
-        function setupEventListeners() {
-            document.getElementById('addTask').addEventListener('click', openModal);
-            document.getElementById('closeModal').addEventListener('click', closeModal);
-            document.getElementById('cancelTask').addEventListener('click', closeModal);
-            document.getElementById('saveTask').addEventListener('click', addTask);
-            
-            document.getElementById('pingTaobe').addEventListener('click', () => {
-                addActivity('You', 'Pinged Taobe for assistance', 'Z');
-                setTimeout(() => {
-                    addActivity('Taobe', 'Received notification and is ready to help', '🤖');
-                }, 1000);
+        function createTask() {
+            const title = document.getElementById('taskTitle').value;
+            if (!title) return;
+
+            const newTask = {
+                id: Date.now(),
+                title: title,
+                assignee: document.getElementById('taskAssignee').value,
+                priority: document.getElementById('taskPriority').value,
+                status: document.getElementById('taskStatus').value,
+                time: 'Just now'
+            };
+
+            tasks.push(newTask);
+            renderBoard();
+            closeModal();
+
+            // Add activity
+            activities.unshift({
+                agent: "You",
+                desc: `Created task "${title}"`,
+                time: "Just now",
+                icon: "Z",
+                color: "var(--accent-blue)"
             });
-            
-            menuToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('open');
+            if (activities.length > 10) activities.pop();
+            renderActivity();
+        }
+
+        function pingTaobe() {
+            activities.unshift({
+                agent: "You",
+                desc: "Pinged Taobe for assistance",
+                time: "Just now",
+                icon: "Z",
+                color: "var(--accent-blue)"
             });
-            
-            // Close modal on overlay click
-            taskModal.addEventListener('click', (e) => {
-                if (e.target === taskModal) closeModal();
-            });
-            
-            // Navigation
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                    item.classList.add('active');
+            renderActivity();
+
+            setTimeout(() => {
+                activities.unshift({
+                    agent: "Taobe",
+                    desc: "Received notification and ready to help",
+                    time: "Just now",
+                    icon: "🤖",
+                    color: "var(--accent-purple)"
                 });
-            });
+                renderActivity();
+            }, 1000);
         }
 
-        // Start
-        init();
+        function showPage(page) {
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            event.target.closest('.nav-item').classList.add('active');
+        }
+
+        // Init
+        createStars();
+        renderBoard();
+        renderActivity();
     </script>
 </body>
 </html>
